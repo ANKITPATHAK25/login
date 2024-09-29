@@ -204,5 +204,34 @@
         </form>
     </div>
 </body>
+    
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const stayLoggedIn = document.getElementById('stayLoggedIn').checked;
+
+            const response = await fetch('http://localhost:5000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert(data.message);
+                // Optionally, save user session here (e.g., using localStorage)
+                if (stayLoggedIn) {
+                    localStorage.setItem('username', username);
+                }
+            } else {
+                alert(`Login failed: ${data.message}`);
+            }
+        });
+    </script>
 
 </html>
