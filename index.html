@@ -204,5 +204,25 @@
         </form>
     </div>
 </body>
+ <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
 
+            // Get the input values
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Here you can add your verification logic
+            // Example: hardcoded credentials
+            const validUsername = 'admin';
+            const validPassword = 'password123';
+
+            if (username === validUsername && password === validPassword) {
+                alert('Login successful!');
+                // Redirect to another page or perform other actions
+            } else {
+                alert('Invalid username or password!');
+            }
+        });
+    </script>
 </html>
